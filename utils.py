@@ -10,8 +10,8 @@ def get_rect_area_panels_count_and_fig(panel_dim1, panel_dim2, area_dim1, area_d
 
     x_panel_count = int(area_width // panel_width)
     y_panel_count = int(area_height // panel_height)
-    rotated_panels_y_count = int((area_height % panel_height) // panel_width)
-    rotated_panels_x_count = int(area_width // panel_height)
+    rotated_panels_y_count = int(area_height // panel_width)
+    rotated_panels_x_count = int(area_width % panel_width) // panel_height
 
     total_panel_count = (
         x_panel_count * y_panel_count + rotated_panels_y_count * rotated_panels_x_count
@@ -49,19 +49,17 @@ def get_panels_layout_fig(
         0, (rotated_panels_x_count + 1) * panel_height, step=panel_height
     ):
         ax.plot(
-            [x, x],
-            [
-                y_panel_count * panel_height,
-                y_panel_count * panel_height + rotated_panels_y_count * panel_width,
-            ],
+            [x_panel_count * panel_width + x, x_panel_count * panel_width + x],
+            [0, rotated_panels_y_count * panel_width],
             'b',
         )
-    for y in np.arange(
-        panel_width, (rotated_panels_y_count + 1) * panel_width, step=panel_width
-    ):
+    for y in np.arange(0, (rotated_panels_y_count + 1) * panel_width, step=panel_width):
         ax.plot(
-            [0, +rotated_panels_x_count * panel_height],
-            [y_panel_count * panel_height + y, y_panel_count * panel_height + y],
+            [
+                x_panel_count * panel_width,
+                x_panel_count * panel_width + rotated_panels_x_count * panel_height,
+            ],
+            [y, y],
             'b',
         )
 
