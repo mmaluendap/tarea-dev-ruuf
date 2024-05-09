@@ -17,3 +17,13 @@ with col1:
 
 with col2:
     area_dim2 = st.number_input('Largo', value=0.0)
+
+st.text('')
+st.write('Dimensiones de los paneles solares')
+col1, col2 = st.columns(2)
+
+with col1:
+    panel_dim1 = st.number_input('Ancho', value=0.0, key='panel_dim1_input')
+
+with col2:
+    panel_dim2 = st.number_input('Largo', value=0.0, key='panel_dim2_input')
