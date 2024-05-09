@@ -40,24 +40,25 @@ def get_panels_layout_fig(
     rotated_panels_x_count,
     rotated_panels_y_count,
 ):
+    panels_rightmost_x = x_panel_count * panel_width
     fig, ax = plt.subplots()
     for x in np.arange(0, (x_panel_count + 1) * panel_width, step=panel_width):
         ax.plot([x, x], [0, y_panel_count * panel_height], 'b')
     for y in np.arange(0, (y_panel_count + 1) * panel_height, step=panel_height):
-        ax.plot([0, x_panel_count * panel_width], [y, y], 'b')
+        ax.plot([0, panels_rightmost_x], [y, y], 'b')
     for x in np.arange(
         0, (rotated_panels_x_count + 1) * panel_height, step=panel_height
     ):
         ax.plot(
-            [x_panel_count * panel_width + x, x_panel_count * panel_width + x],
+            [panels_rightmost_x + x, panels_rightmost_x + x],
             [0, rotated_panels_y_count * panel_width],
             'b',
         )
     for y in np.arange(0, (rotated_panels_y_count + 1) * panel_width, step=panel_width):
         ax.plot(
             [
-                x_panel_count * panel_width,
-                x_panel_count * panel_width + rotated_panels_x_count * panel_height,
+                panels_rightmost_x,
+                panels_rightmost_x + rotated_panels_x_count * panel_height,
             ],
             [y, y],
             'b',
