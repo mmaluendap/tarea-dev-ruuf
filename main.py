@@ -38,4 +38,4 @@ if st.button('Calcular cuántos paneles caben', type='primary'):
 
     st.write(f'### Caben {panels_count} paneles')
 
-    st.pyplot(None)
+    st.pyplot(fig)
